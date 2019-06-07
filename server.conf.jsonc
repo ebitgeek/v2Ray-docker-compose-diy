@@ -16,17 +16,17 @@
             "alterId": 64
           }
         ],
-        "streamSettings": {
-          "network": "kcp",
-          "header": {
-            "type": "wechat-video"
-          }
-        },
+        // "streamSettings": {
+        //   "network": "kcp",
+        //   "header": {
+        //     "type": "wechat-video"
+        //   }
+        // },
 
-        // 动态端口
-        "detour": {
-          "to": "dynamic-port"
-        },
+        // // 动态端口
+        // "detour": {
+        //   "to": "dynamic-port"
+        // },
 
         // 防止DNS污染
         "sniffing": {
@@ -34,32 +34,32 @@
           "destOverride": ["http", "tls"]
         }
       }
-    },
-    {
-      "protocol": "vmess",
-      "port": "17900-17920",
-      "tag": "dynamic-port",
-      "settings": {
-        "default": {
-          "alterId": 64
-        }
-      },
-
-      // 分配模式
-      "allocate": {
-        "strategy": "random", // 随机开启
-        "concurrency": 2, // 同事开放两个端口
-        "refresh": 3 // 每三分钟涮新一次
-      },
-
-      // mkcp 设置
-      "streamSettings": {
-        "network": "kcp",
-        "header": {
-          "type": "wechat-video" // 伪装微信视频聊天包
-        }
-      }
     }
+    // {
+    //   "protocol": "vmess",
+    //   "port": "17900-17920",
+    //   "tag": "dynamic-port",
+    //   "settings": {
+    //     "default": {
+    //       "alterId": 64
+    //     }
+    //   },
+
+    //   // 分配模式
+    //   "allocate": {
+    //     "strategy": "random", // 随机开启
+    //     "concurrency": 2, // 同事开放两个端口
+    //     "refresh": 3 // 每三分钟涮新一次
+    //   },
+
+    //   // mkcp 设置
+    //   "streamSettings": {
+    //     "network": "kcp",
+    //     "header": {
+    //       "type": "wechat-video" // 伪装微信视频聊天包
+    //     }
+    //   }
+    // }
   ],
   "outbounds": [
     {
