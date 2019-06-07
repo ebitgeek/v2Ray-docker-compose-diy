@@ -15,7 +15,12 @@
             "level": 1,
             "alterId": 64
           }
-        ]
+        ],
+
+        //绕行配置，即指示客户端使用 dynamicPort 的配置通信
+        "detour": {
+          "to": "dynamic-port"
+        }
       },
       // 防止DNS污染
       "sniffing": {
@@ -23,7 +28,38 @@
         "destOverride": ["http", "tls"]
       },
       "streamSettings": {
-        "network": "mkcp", //此处的 mkcp 也可写成 kcp，两种写法是起同样的效果
+        "network": "mkcp", // 此处的 mkcp 也可写成 kcp，两种写法是起同样的效果
+        "kcpSettings": {
+          "uplinkCapacity": 5,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "header": {
+            "type": "wechat-video"
+          }
+        }
+      }
+    },
+    {
+      "protocol": "vmess",
+      "port": "17900-17920",
+      "tag": "dynamic-port",
+      "settings": {
+        "default": {
+          "level": 1,
+          "alterId": 64
+        }
+      },
+
+      // 分配模式
+      "allocate": {
+        "strategy": "random", // 随机开启
+        "concurrency": 2, // 同事开放两个端口
+        "refresh": 3 // 每三分钟涮新一次
+      },
+
+      // mkcp 设置
+      "streamSettings": {
+        "network": "mkcp", // 此处的 mkcp 也可写成 kcp，两种写法是起同样的效果
         "kcpSettings": {
           "uplinkCapacity": 5,
           "downlinkCapacity": 100,
@@ -34,31 +70,6 @@
         }
       }
     }
-    // {
-    //   "protocol": "vmess",
-    //   "port": "17900-17920",
-    //   "tag": "dynamic-port",
-    //   "settings": {
-    //     "default": {
-    //       "alterId": 64
-    //     }
-    //   },
-
-    //   // 分配模式
-    //   "allocate": {
-    //     "strategy": "random", // 随机开启
-    //     "concurrency": 2, // 同事开放两个端口
-    //     "refresh": 3 // 每三分钟涮新一次
-    //   },
-
-    //   // mkcp 设置
-    //   "streamSettings": {
-    //     "network": "kcp",
-    //     "header": {
-    //       "type": "wechat-video" // 伪装微信视频聊天包
-    //     }
-    //   }
-    // }
   ],
   "outbounds": [
     {
