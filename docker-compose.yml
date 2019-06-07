@@ -6,13 +6,9 @@ services:
     restart: always
     volumes:
       - ./server.conf.jsonc:/etc/v2ray/server.conf.jsonc
-      - ./client.conf.jsonc:/etc/v2ray/client.conf.jsonc
-    environment:
-      - VMODE=server
     ports:
       - "16823:16823"
       - "16823:16823/udp"
       - "10000-20000:10000-20000"
       - "10000-20000:10000-20000/udp"
-      - "127.0.0.1:1080:1080"
-    command: ["v2ray", "-config=/etc/v2ray/${VMODE}.conf.jsonc"]
+    command: ["v2ray", "-config=/etc/v2ray/server.conf.jsonc"]

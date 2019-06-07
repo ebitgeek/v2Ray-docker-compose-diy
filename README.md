@@ -10,14 +10,3 @@
 ```shell
 docker-compose up -d 
 ```
-
-## client (客户端)
-打开  *client.conf.jsonc* 
-- 替换 `uuid` (必须与服务端相同)
-- 修改 `address` 为服务端地址
-
-### 启动客户端
-终端输入
-```shell
-docker-compose up -d -e VMODE=client
-```
