@@ -29,7 +29,7 @@
           "downlinkCapacity": 100,
           "congestion": true,
           "header": {
-            "type": "none"
+            "type": "webchat-video"
           }
         }
       }
