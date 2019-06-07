@@ -15,28 +15,22 @@
             "level": 1,
             "alterId": 64
           }
-        ],
-        "streamSettings": {
-          "network": "mkcp", //此处的 mkcp 也可写成 kcp，两种写法是起同样的效果
-          "kcpSettings": {
-            "uplinkCapacity": 5,
-            "downlinkCapacity": 100,
-            "congestion": true,
-            "header": {
-              "type": "none"
-            }
+        ]
+      },
+      // 防止DNS污染
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
+      },
+      "streamSettings": {
+        "network": "mkcp", //此处的 mkcp 也可写成 kcp，两种写法是起同样的效果
+        "kcpSettings": {
+          "uplinkCapacity": 5,
+          "downlinkCapacity": 100,
+          "congestion": true,
+          "header": {
+            "type": "none"
           }
-        },
-
-        // // 动态端口
-        // "detour": {
-        //   "to": "dynamic-port"
-        // },
-
-        // 防止DNS污染
-        "sniffing": {
-          "enabled": true,
-          "destOverride": ["http", "tls"]
         }
       }
     }
