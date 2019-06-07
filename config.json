@@ -4,7 +4,8 @@
     "error": "/var/log/v2ray/error.log",
     "loglevel": "warning"
   },
-  "inbounds": [{
+  "inbounds": [
+    {
     "port": 16823,
     "protocol": "vmess",
     "settings": {
@@ -20,9 +21,38 @@
         "header": {
           "type": "wechat-video"
         }
+      },
+      "detour": {
+        "to": "dynamic-port"
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": ["http", "tls"]
       }
     }
-  }],
+    },
+    {
+      "protocol": "vmess",
+      "port": "10000-20000",
+      "tag": "dynamic-port",
+      "settings": {
+        "default": {
+          "alterId": 64
+        }
+      },
+      "allocate": {
+        "strategy": "random",
+        "concurrency": 2, 
+        "refresh": 3    
+      },
+      "streamSettings": {
+        "network": "kcp",
+        "header": {
+          "type": "wechat-video"
+        }
+      }
+    }
+],
   "outbounds": [{
     "protocol": "freedom",
     "settings": {}
