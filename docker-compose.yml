@@ -1,0 +1,18 @@
+version: "3.5"
+services:
+  v2ray:
+    image: v2ray/official:latest
+    container_name: v2ray
+    restart: always
+    volumes:
+      - ./server.conf.jsonc:/etc/v2ray/server.conf.jsonc
+      - ./client.conf.jsonc:/etc/v2ray/client.conf.jsonc
+    environment:
+      - VMODE=server
+    ports:
+      - "16823:16823"
+      - "16823:16823/udp"
+      - "10000-20000:10000-20000"
+      - "10000-20000:10000-20000/udp"
+      - "127.0.0.1:1080:1080"
+    command: ["v2ray", "-config=/etc/v2ray/${VMODE}.conf.jsonc"]
