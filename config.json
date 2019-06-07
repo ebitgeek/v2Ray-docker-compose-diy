@@ -6,7 +6,7 @@
   },
   "inbounds": [
     {
-    "port": 16823,
+    "port": 65535,
     "protocol": "vmess",
     "settings": {
       "clients": [
@@ -33,7 +33,7 @@
     },
     {
       "protocol": "vmess",
-      "port": "16900-16920",
+      "port": "17900-17920",
       "tag": "dynamic-port",
       "settings": {
         "default": {
