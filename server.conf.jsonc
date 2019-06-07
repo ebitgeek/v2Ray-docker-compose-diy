@@ -17,10 +17,7 @@
           }
         ],
         "streamSettings": {
-          "network": "kcp",
-          "header": {
-            "type": "wechat-video"
-          }
+          "network": "kcp"
         },
 
         // // 动态端口
