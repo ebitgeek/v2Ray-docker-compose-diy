@@ -22,11 +22,35 @@
           "type": "wechat-video"
         }
       },
+      "detour": {
+        "to": "dynamic-port"
+      },
       "sniffing": {
         "enabled": true,
         "destOverride": ["http", "tls"]
       }
     }
+    },
+    {
+      "protocol": "vmess",
+      "port": "16900-16920",
+      "tag": "dynamic-port",
+      "settings": {
+        "default": {
+          "alterId": 64
+        }
+      },
+      "allocate": {
+        "strategy": "random",
+        "concurrency": 2, 
+        "refresh": 3    
+      },
+      "streamSettings": {
+        "network": "kcp",
+        "header": {
+          "type": "wechat-video"
+        }
+      }
     }
 ],
   "outbounds": [{
