@@ -1,0 +1,70 @@
+{
+  "log": {
+    "access": "/var/log/v2ray/access.log",
+    "error": "/var/log/v2ray/error.log",
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "port": 65535,
+      "protocol": "vmess",
+      "settings": {
+        "clients": [
+          {
+            "id": "60ca58e9-003e-4c01-98de-c2223ae49153", // UUID: 请生成一个新的UUID替换
+            "level": 1,
+            "alterId": 64
+          }
+        ],
+        "streamSettings": {
+          "network": "kcp",
+          "header": {
+            "type": "wechat-video"
+          }
+        },
+
+        // 动态端口
+        "detour": {
+          "to": "dynamic-port"
+        },
+
+        // 防止DNS污染
+        "sniffing": {
+          "enabled": true,
+          "destOverride": ["http", "tls"]
+        }
+      }
+    },
+    {
+      "protocol": "vmess",
+      "port": "17900-17920",
+      "tag": "dynamic-port",
+      "settings": {
+        "default": {
+          "alterId": 64
+        }
+      },
+
+      // 分配模式
+      "allocate": {
+        "strategy": "random", // 随机开启
+        "concurrency": 2, // 同事开放两个端口
+        "refresh": 3 // 每三分钟涮新一次
+      },
+
+      // mkcp 设置
+      "streamSettings": {
+        "network": "kcp",
+        "header": {
+          "type": "wechat-video" // 伪装微信视频聊天包
+        }
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "settings": {}
+    }
+  ]
+}

@@ -3,7 +3,7 @@ services:
   v2ray:
     image: v2ray/official:latest
     volumes:
-      - ./config.json:/etc/v2ray/config.json
+      - ./server.conf.jsonc:/etc/v2ray/server.conf.jsonc
       - /var/log/v2ray/:/var/log/v2ray/
     ports:
       - "65535:65535"
@@ -11,3 +11,4 @@ services:
       - "17900-17920:17900-17920"
       - "17900-17920:17900-17920/udp"
     restart: always
+    command: ["v2ray", "-config=/etc/v2ray/server.conf.jsonc"]
