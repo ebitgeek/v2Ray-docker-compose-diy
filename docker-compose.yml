@@ -4,9 +4,8 @@ services:
     image: v2ray/official:latest
     volumes:
       - ./config.json:/etc/v2ray/config.json
+      - /var/log/v2ray/:/var/log/v2ray/
     ports:
       - "16823:16823"
       - "16823:16823/udp"
-      - "10000-20000:10000-20000"
-      - "10000-20000:10000-20000/udp"
     restart: always
